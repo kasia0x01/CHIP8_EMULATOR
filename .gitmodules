@@ -1,0 +1,3 @@
+[submodule "ROMs"]
+	path = ROMs
+	url = https://github.com/embeddedk8/chip8-roms
