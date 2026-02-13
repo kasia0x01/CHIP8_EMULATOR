@@ -1,7 +1,19 @@
 # CHIP8_EMULATOR
 
-**Work in Progress** 
+This is the CHIP8_EMULATOR project.
 
-![workflow](https://github.com/katemz/CHIP8_EMULATOR/actions/workflows/cmake.yml/badge.svg)
+# Building and installing
 
-The goal of this project is to create CHIP8 Emulator in C++11 language, using SDL for UI.
+See the [BUILDING](BUILDING.md) document.
+
+# Contributing
+
+See the [CONTRIBUTING](CONTRIBUTING.md) document.
+
+# Licensing
+
+<!--
+Please go to https://choosealicense.com/licenses/ and choose a license that
+fits your needs. The recommended license for a project of this type is the
+GNU AGPLv3.
+-->
