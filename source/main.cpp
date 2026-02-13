@@ -3,11 +3,10 @@
 #include "application.h"
 #include "chip8.h"
 
-int main(int argc, char *args[])
+int main(int argc, char* args[])
 {
-  if (argc < 2)
-  {
-    std::cout << "Usage: ./chip8 <ROM file path>" <<std::endl;
+  if (argc < 2) {
+    std::cout << "Usage: ./chip8 <ROM file path>" << std::endl;
     return -1;
   }
 
