@@ -18,6 +18,9 @@ include(cmake/variables.cmake)
 add_library(
     CHIP8_EMULATOR_lib OBJECT
     source/lib.cpp
+    source/application.cpp
+    source/chip8.cpp
+    source/chip8_impl.cpp
 )
 
 target_include_directories(
@@ -37,7 +40,9 @@ set_property(TARGET CHIP8_EMULATOR_exe PROPERTY OUTPUT_NAME CHIP8_EMULATOR)
 
 target_compile_features(CHIP8_EMULATOR_exe PRIVATE cxx_std_20)
 
-target_link_libraries(CHIP8_EMULATOR_exe PRIVATE CHIP8_EMULATOR_lib)
+find_package(SDL2 REQUIRED)
+
+target_link_libraries(CHIP8_EMULATOR_exe PRIVATE CHIP8_EMULATOR_lib ${SDL2_LIBRARIES})
 
 # ---- Install rules ----
 

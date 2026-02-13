@@ -1,12 +1,31 @@
 #include <iostream>
-#include <string>
 
-#include "lib.hpp"
+#include "application.h"
+#include "chip8.h"
 
-auto main() -> int
+int main(int argc, char *args[])
 {
-  auto const lib = library {};
-  auto const message = "Hello from " + lib.name + "!";
-  std::cout << message << '\n';
+  if (argc < 2)
+  {
+    std::cout << "Usage: ./chip8 <ROM file path>" <<std::endl;
+    return -1;
+  }
+
+  std::string romFile = args[1];
+
+  Application& app = Application::instance();
+  std::unique_ptr<IEmulator> chip8 = std::make_unique<CHIP8>();
+
+  chip8->loadROM(romFile);
+
+  if (!app.init(std::move(chip8))) {
+    std::cerr << "Failed to init" << std::endl;
+    return -1;
+  }
+
+  app.run();
+
+  app.close();
+
   return 0;
 }
