@@ -77,6 +77,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install SDL2
+      run: sudo apt-get update -q && sudo apt-get install libsdl2-dev -q -y
+
     - name: Configure
       run: cmake --preset=ci-sanitize
 
@@ -116,6 +119,9 @@ jobs:
         sudo update-alternatives --install
         /usr/bin/clang-tidy clang-tidy
         /usr/bin/clang-tidy-18 180
+
+    - name: Install SDL2
+      run: sudo apt-get update -q && sudo apt-get install libsdl2-dev -q -y
 
     - name: Setup MultiToolTask
       if: matrix.os == 'windows-2022'
