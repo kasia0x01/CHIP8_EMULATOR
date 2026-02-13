@@ -1,32 +1,59 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.14)
 
-project(CHIP8 LANGUAGES CXX)
+include(cmake/prelude.cmake)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(SDL2 REQUIRED)
-
-include_directories(${SDL2_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR})
-
-# Create a sources variable with a link to all cpp files to compile
-set(SOURCES
-    main.cpp
-    application.cpp
-    chip8.cpp
-    chip8_impl.cpp
+project(
+    CHIP8_EMULATOR
+    VERSION 0.1.0
+    DESCRIPTION "CHIP8 interpreter"
+    HOMEPAGE_URL "https://example.com/"
+    LANGUAGES CXX
 )
 
-set(HEADERS
-    application.h
-    chip8.h
-    chip8_defs.h
-    chip8_impl.h
-    idisplayable.h
-    ihaskeyboard.h
-    ihasloadablerom.h
-    iemulator.h
+include(cmake/project-is-top-level.cmake)
+include(cmake/variables.cmake)
+
+# ---- Declare library ----
+
+add_library(
+    CHIP8_EMULATOR_lib OBJECT
+    source/lib.cpp
 )
 
-add_executable(CHIP8 ${SOURCES} ${HEADERS})
-target_link_libraries(CHIP8 ${SDL2_LIBRARIES} )
+target_include_directories(
+    CHIP8_EMULATOR_lib ${warning_guard}
+    PUBLIC
+    "\$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
+)
+
+target_compile_features(CHIP8_EMULATOR_lib PUBLIC cxx_std_20)
+
+# ---- Declare executable ----
+
+add_executable(CHIP8_EMULATOR_exe source/main.cpp)
+add_executable(CHIP8_EMULATOR::exe ALIAS CHIP8_EMULATOR_exe)
+
+set_property(TARGET CHIP8_EMULATOR_exe PROPERTY OUTPUT_NAME CHIP8_EMULATOR)
+
+target_compile_features(CHIP8_EMULATOR_exe PRIVATE cxx_std_20)
+
+target_link_libraries(CHIP8_EMULATOR_exe PRIVATE CHIP8_EMULATOR_lib)
+
+# ---- Install rules ----
+
+if(NOT CMAKE_SKIP_INSTALL_RULES)
+  include(cmake/install-rules.cmake)
+endif()
+
+# ---- Developer mode ----
+
+if(NOT CHIP8_EMULATOR_DEVELOPER_MODE)
+  return()
+elseif(NOT PROJECT_IS_TOP_LEVEL)
+  message(
+      AUTHOR_WARNING
+      "Developer mode is intended for developers of CHIP8_EMULATOR"
+  )
+endif()
+
+include(cmake/dev-mode.cmake)
