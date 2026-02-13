@@ -1,3 +1,0 @@
-/home/kate/embeddedk8/CHIP8_EMULATOR/CMakeFiles/CHIP8.dir
-/home/kate/embeddedk8/CHIP8_EMULATOR/CMakeFiles/edit_cache.dir
-/home/kate/embeddedk8/CHIP8_EMULATOR/CMakeFiles/rebuild_cache.dir
