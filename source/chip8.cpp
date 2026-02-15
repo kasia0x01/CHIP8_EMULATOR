@@ -1,11 +1,11 @@
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
+#include <filesystem>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <memory>
-#include <filesystem>
 
 #include "chip8.h"
 
@@ -63,10 +63,11 @@ bool CHIP8::loadROM(const std::string& filePath)
     return false;
   }
 
-  constexpr std::streamsize MAX_ROM_SIZE = CHIP8_defs::MEM_SIZE - CHIP8_defs::START_ADDRESS;
+  constexpr std::streamsize MAX_ROM_SIZE =
+      CHIP8_defs::MEM_SIZE - CHIP8_defs::START_ADDRESS;
   if (fileSize > MAX_ROM_SIZE) {
-    std::cerr << "Error: ROM too large (" << fileSize
-              << " bytes, max " << MAX_ROM_SIZE << ")" << std::endl;
+    std::cerr << "Error: ROM too large (" << fileSize << " bytes, max "
+              << MAX_ROM_SIZE << ")" << std::endl;
     return false;
   }
 
@@ -83,7 +84,8 @@ bool CHIP8::loadROM(const std::string& filePath)
     return false;
   }
 
-  in.read(reinterpret_cast<char*>(&impl_->mem_[CHIP8_defs::START_ADDRESS]),fileSize);
+  in.read(reinterpret_cast<char*>(&impl_->mem_[CHIP8_defs::START_ADDRESS]),
+          fileSize);
   in.close();
 
   return true;
