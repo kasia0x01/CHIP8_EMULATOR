@@ -15,7 +15,10 @@ int main(int argc, char* args[])
   Application& app = Application::instance();
   std::unique_ptr<IEmulator> chip8 = std::make_unique<CHIP8>();
 
-  chip8->loadROM(romFile);
+  if (!chip8->loadROM(romFile)) {
+    std::cerr << "Failed to load ROM from " << romFile << std::endl;
+    return -1;
+  }
 
   if (!app.init(std::move(chip8))) {
     std::cerr << "Failed to init" << std::endl;

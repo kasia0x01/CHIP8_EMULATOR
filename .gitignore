@@ -10,4 +10,7 @@ CMakeLists.txt.user
 CMakeUserPresets.json
 compile_commands.json
 CMakeFiles/
-
+CMakeCache.txt
+.cmake/
+build.ninja
+Testing/

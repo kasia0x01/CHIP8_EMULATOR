@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <iostream>
 #include <memory>
+#include <filesystem>
 
 #include "chip8.h"
 
@@ -41,19 +42,51 @@ void CHIP8::display() const
   impl_->display();
 }
 
-void CHIP8::loadROM(const std::string& filePath)
+bool CHIP8::loadROM(const std::string& filePath)
 {
+  namespace fs = std::filesystem;
+
+  std::error_code ec;
+
+  if (!fs::exists(filePath, ec)) {
+    if (ec) {
+      std::cerr << "Error checking file: " << ec.message() << std::endl;
+    } else {
+      std::cerr << "Error: File not found: " << filePath << std::endl;
+    }
+    return false;
+  }
+
+  auto fileSize = fs::file_size(filePath, ec);
+  if (ec) {
+    std::cerr << "Error getting file size: " << ec.message() << std::endl;
+    return false;
+  }
+
+  constexpr std::streamsize MAX_ROM_SIZE = CHIP8_defs::MEM_SIZE - CHIP8_defs::START_ADDRESS;
+  if (fileSize > MAX_ROM_SIZE) {
+    std::cerr << "Error: ROM too large (" << fileSize
+              << " bytes, max " << MAX_ROM_SIZE << ")" << std::endl;
+    return false;
+  }
+
+  if (fileSize == 0) {
+    std::cerr << "Error: ROM file is empty" << std::endl;
+    return false;
+  }
+
   std::ifstream in;
   in.open(filePath, std::ios::in | std::ios::binary);
 
   if (!in.is_open()) {
-    std::cout << "Error in open file" << std::endl;
-    return;
+    std::cerr << "Error opening file: " << filePath << std::endl;
+    return false;
   }
 
-  in.read((char*)&impl_->mem_[CHIP8_defs::START_ADDRESS],
-          CHIP8_defs::MEM_SIZE - CHIP8_defs::START_ADDRESS);
+  in.read(reinterpret_cast<char*>(&impl_->mem_[CHIP8_defs::START_ADDRESS]),fileSize);
   in.close();
+
+  return true;
 }
 
 void CHIP8::cycle()
