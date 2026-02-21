@@ -1,8 +1,10 @@
 #include <chrono>
+#include <iostream>
 #include <thread>
-#include <SDL2/SDL.h>
 
 #include "application.h"
+
+#include <SDL2/SDL.h>
 
 Application::Application() {}
 
