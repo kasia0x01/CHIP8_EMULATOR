@@ -1,7 +1,10 @@
 #include <chrono>
+#include <iostream>
 #include <thread>
 
 #include "application.h"
+
+#include <SDL2/SDL.h>
 
 Application::Application() {}
 
@@ -49,7 +52,7 @@ bool Application::init(std::unique_ptr<IEmulator> emulator)
   return true;
 }
 
-void Application::close()
+void Application::close() noexcept
 {
   SDL_DestroyRenderer(renderer_);
   renderer_ = nullptr;
@@ -216,8 +219,8 @@ void Application::run()
     SDL_SetRenderDrawColor(renderer_, 0xff, 0xff, 0xff, 0xff);
     SDL_RenderClear(renderer_);
 
-    int rectWidth = 10;
-    int margin = 1;
+    int rectWidth = rectWidth_;
+    int margin = margin_;
 
     for (size_t i = 0; i < emulator_->getHeight(); i++) {
       for (size_t j = 0; j < emulator_->getWidth(); j++) {

@@ -37,7 +37,7 @@ public:
     void keyReleased(char c) override;
 
     // IEmulator : IHasLoadableROM
-    void loadROM(const std::string& filePath) override;
+    bool loadROM(const std::string& filePath) override;
 
 private:
     std::unique_ptr<CHIP8_impl> impl_;

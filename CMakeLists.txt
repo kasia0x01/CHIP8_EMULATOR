@@ -4,23 +4,21 @@ include(cmake/prelude.cmake)
 
 project(
         CHIP8_EMULATOR
-        VERSION 0.1.0
+        VERSION 0.1.1
         DESCRIPTION "CHIP8 interpreter"
-        HOMEPAGE_URL "https://example.com/"
+        HOMEPAGE_URL "https://github.com/embeddedk8/CHIP8_EMULATOR"
         LANGUAGES CXX
 )
 
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
-# ---- Find SDL2 early ----
+# ---- Find SDL2 ----
 find_package(SDL2 REQUIRED)
 
 # ---- Declare library ----
-
 add_library(
         CHIP8_EMULATOR_lib OBJECT
-        source/lib.cpp
         source/application.cpp
         source/chip8.cpp
         source/chip8_impl.cpp
