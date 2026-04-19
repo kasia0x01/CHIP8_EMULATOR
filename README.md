@@ -2,9 +2,9 @@
 # CHIP8_EMULATOR
 
 <!-- Build Status (GitHub Actions) -->
-![CI](https://github.com/embeddedk8/CHIP8_EMULATOR/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/kasia0x01/CHIP8_EMULATOR/actions/workflows/ci.yml/badge.svg)
 <!-- PRs Welcome -->
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/embeddedk8/CHIP8_EMULATOR/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/kasia0x01/CHIP8_EMULATOR/pulls)
 ![C++](https://img.shields.io/badge/C++-20-00599C?logo=cplusplus)
 ![CMake](https://img.shields.io/badge/CMake-3.x-064F8C?logo=cmake)
 
@@ -126,5 +126,5 @@ for license details.
 ## Maintainers / Contact
 
 For issues or questions, open a GitHub issue on the project tracker:
-https://github.com/embeddedk8/CHIP8_EMULATOR
+https://github.com/kasia0x01/CHIP8_EMULATOR
 
