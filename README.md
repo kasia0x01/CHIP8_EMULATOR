@@ -107,7 +107,7 @@ or your chosen test runner if configured.
 
 ## Contributing
 
-Please see `CONTRIBUTING.md` for guidelines on submitting patches, reporting
+Please see [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md) for guidelines on submitting patches, reporting
 issues, and running local tests. Small, focused Pull Requests with clear
 descriptions are appreciated.
 
