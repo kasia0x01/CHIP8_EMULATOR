@@ -9,11 +9,9 @@
 ![CMake](https://img.shields.io/badge/CMake-3.x-064F8C?logo=cmake)
 
 
-CHIP-8 interpreter implemented in modern C++.
-
-This project provides a small CHIP-8 virtual machine with
-an SDL2-based frontend for display and keyboard input. It is intended as
-an educational reference.
+CHIP-8 interpreter implemented in modern C++ with
+an SDL2-based frontend for display and keyboard input. 
+It is intended as an educational reference.
 
 **Repository layout**
 
@@ -23,10 +21,9 @@ an educational reference.
 
 ## Features
 
-- Full CHIP-8 interpreter core (memory, registers, stack, timers, display).
-- SDL2-based windowing and keyboard input.
-- Example/demo ROMs included in `ROMs/`.
-- Portable build via CMake (Linux/macOS/Windows with appropriate toolchain).
+- Full CHIP-8 interpreter core
+- SDL2-based windowing and keyboard input
+- Portable build via CMake
 
 ## Requirements
 
@@ -64,10 +61,8 @@ Usage:
 Example (from repo root):
 
 ```bash
-./build/CHIP8_EMULATOR ROMs/demos/Zero\ Demo\ \[zeroZshadow,\ 2007\].ch8
+./build/CHIP8_EMULATOR ROMs/bin/1-chip8-logo.ch8
 ```
-
-If you use the provided `ROMs/` folder, point the emulator at any `.ch8` file.
 
 ## Controls (keyboard mapping)
 
@@ -87,29 +82,8 @@ So, for example, CHIP-8 key `5` maps to `W` and CHIP-8 key `A` maps to `Z`.
 
 ## ROMs and Demos
 
-This repository includes a collection of classic CHIP-8 ROMs in the `ROMs/`
-directory. Use them to test rendering, input, and timing. If you add your own
-ROMs, place them anywhere accessible and pass the path to the emulator.
-
-## Development
-
-- The core emulator code lives under `source/` and targets C++20.
-- The project uses SDL2 for display/input and CMake for build configuration.
-
-To run the project in developer mode with extra checks (if desired): see
-`cmake/dev-mode.cmake` and enable `CHIP8_EMULATOR_DEVELOPER_MODE` when
-invoking CMake.
-
-## Testing
-
-There is a `test/` CMake target and a simple test harness; run tests via CMake
-or your chosen test runner if configured.
-
-## Contributing
-
-Please see [`docs/CONTRIBUTING.md`](docs/CONTRIBUTING.md) for guidelines on submitting patches, reporting
-issues, and running local tests. Small, focused Pull Requests with clear
-descriptions are appreciated.
+This repository includes a collection of CHIP-8 ROMs as the submodule in the `ROMs/`
+directory (https://github.com/Timendus/chip8-test-suite)
 
 ## Troubleshooting
 
@@ -117,14 +91,4 @@ descriptions are appreciated.
 	(install `libsdl2-dev` or equivalent).
 - If the emulator exits with "Usage" message, ensure you pass a valid ROM file
 	path on the command line.
-
-## License
-
-This project includes a `LICENSE` file in the repository root. Review that file
-for license details.
-
-## Maintainers / Contact
-
-For issues or questions, open a GitHub issue on the project tracker:
-https://github.com/embeddedk8/CHIP8_EMULATOR
 

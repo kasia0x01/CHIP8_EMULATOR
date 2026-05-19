@@ -274,7 +274,7 @@ void CHIP8_impl::nibble_D()
   uint8_t height = (opcode_ & 0x000Fu);  // height of displayed sprite
 
   uint8_t xPos = reg_[x] % CHIP8_defs::DISPLAY_WIDTH;
-  uint8_t yPos = reg_[y] % CHIP8_defs::DISPLAY_WIDTH;
+  uint8_t yPos = reg_[y] % CHIP8_defs::DISPLAY_HEIGHT;
 
   reg_[0xF] = 0;  // clear collision flag
 
